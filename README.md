@@ -10,5 +10,6 @@ Este código debe de ser usado como guía y comienzo en la **Práctica 3: Digita
 * Proveer al profesor un enlace a la versión modificada de este repositorio presente en su cuenta personal.
 
 # Integrantes
-Fecha:
-* ??
+Fecha:16/11/2015
+* Esteban Muñoz Guevara
+* Christian Vergara
