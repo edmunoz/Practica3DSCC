@@ -43,7 +43,7 @@ namespace Practica3DSCC
                 timer.Tick +=<tab><tab>
                 timer.Start();
             *******************************************************************************************/
-
+            
             sensor = new SensorProximidad(extender);
             // Use Debug.Print to show messages in Visual Studio's "Output" window during debugging.
             Debug.Print("Program Started");
@@ -59,11 +59,25 @@ namespace Practica3DSCC
             btn_start.TapEvent += btn_start_TapEvent;
             btn_stop.TapEvent += btn_stop_TapEvent;
 
+            //Eventos sensor
+            sensor.ObjectOn += sensor_ObjectOn;
+            sensor.ObjectOff += sensor_ObjectOff;  
+
             //Selecciona mainWindow como la ventana de inicio
             Glide.MainWindow = controlWindow;
 
             
 
+        }
+
+        void sensor_ObjectOff()
+        {
+            Debug.Print("Objeto salio");
+        }
+
+        void sensor_ObjectOn()
+        {
+            Debug.Print("Objeto entro");
         }
 
         void btn_stop_TapEvent(object sender)

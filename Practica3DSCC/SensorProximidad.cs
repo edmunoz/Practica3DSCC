@@ -28,6 +28,17 @@ namespace Practica3DSCC
         //EVENTO ObjectOn: Disparar este evento cuando el sensor detecte la presencia de un objeto
         public event ObjectOnEventHandler ObjectOn;
 
+        private GT.Timer timer; // every second (1000ms)
+
+        private enum Estado
+        {
+            Ninguno,
+            Presente,
+            Ausente
+        }
+
+        Estado estado;
+
         private GT.SocketInterfaces.AnalogInput entrada = null;
         private GT.SocketInterfaces.DigitalOutput salida = null;
         
@@ -37,16 +48,42 @@ namespace Practica3DSCC
 
             entrada = extender.CreateAnalogInput(GT.Socket.Pin.Four);
             salida = extender.CreateDigitalOutput(GT.Socket.Pin.Eight, false);
-          
+            timer = new GT.Timer(1000);
+            timer.Tick += timer_Tick;
+            estado = Estado.Ninguno;  
+        }
+
+        void timer_Tick(GT.Timer timer)
+        {
+            Double voltaje = entrada.ReadVoltage();
+            Debug.Print("Voltaje: " + entrada.ReadVoltage());
+
+            if (voltaje < 3 )
+            {
+                if (estado == Estado.Ninguno || estado == Estado.Ausente)
+                {
+                    ObjectOn();
+                    estado = Estado.Presente;
+                }                
+            }
+            else
+            {
+                if (estado == Estado.Presente)
+                {
+                    ObjectOff();
+                    estado = Estado.Ausente;
+                }                
+            }
         }
 
         public void StartSampling()
         {
             //TODO: Activar el LED infrarrojo y empezar a muestrear el foto-transistor
             //entrada.ReadVoltage();
-            
+            Debug.Print("Voltaje: " + entrada.ReadVoltage());
             salida.Write(true);
             Debug.Print("Encendido");
+            timer.Start(); 
         }
 
         public void StopSampling()
@@ -54,6 +91,7 @@ namespace Practica3DSCC
             //TODO: Desactivar el LED infrarrojo y detener el muestreo del foto-transistor
             salida.Write(false);
             Debug.Print("Apagado");
+            timer.Stop(); 
         }
     }
 }
