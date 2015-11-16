@@ -46,8 +46,8 @@ namespace Practica3DSCC
         {
             //TODO: Inicializar el sensor
 
-            entrada = extender.CreateAnalogInput(GT.Socket.Pin.Four);
-            salida = extender.CreateDigitalOutput(GT.Socket.Pin.Eight, false);
+            entrada = extender.CreateAnalogInput(GT.Socket.Pin.Three);
+            salida = extender.CreateDigitalOutput(GT.Socket.Pin.Five, false);
             timer = new GT.Timer(1000);
             timer.Tick += timer_Tick;
             estado = Estado.Ninguno;  

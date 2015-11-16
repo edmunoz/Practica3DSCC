@@ -55,7 +55,7 @@
           <moduleHasSocketUses Id="d0d3d456-15e8-42b5-8020-dcfc67221c61">
             <socketUse Id="5a02d7c4-642d-48a2-be52-64d8bf7c6f67" label="H">
               <socket>
-                <socketUseReferencesSocket Id="09c5e578-7cde-444e-a87b-1c2c0e260ffd">
+                <socketUseReferencesSocket Id="fffdc487-5313-4596-87e5-3b3a5a2a1ac7">
                   <socketMoniker Id="f940a362-d9ae-4521-b60a-68eea3bb2443" />
                 </socketUseReferencesSocket>
               </socket>
